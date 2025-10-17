@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2025/06/12 17:46:38.000.217,=C:\Users\WIN10GPT\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/10/17 09:53:56.950,=C:\Users\WIN10GPT\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/10/17 09:54:06.494,=C:\Users\WIN10GPT\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2025/10/17 09:54:24.369,C:\dev\componentes\reforma tributaria\Calculadora\uCalculadoraTributosAPI.pas=C:\Users\WIN10GPT\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2025/10/17 09:55:04.281,C:\dev\componentes\reforma tributaria\Calculadora\uCalculadoraRT.pas=C:\Users\WIN10GPT\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/10/17 09:55:04.281,C:\dev\componentes\reforma tributaria\Calculadora\uCalculadoraRT.dfm=C:\Users\WIN10GPT\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2025/10/17 09:55:12.208,C:\dev\componentes\reforma tributaria\Calculadora\CalculadoraRT.dproj=C:\Users\WIN10GPT\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
