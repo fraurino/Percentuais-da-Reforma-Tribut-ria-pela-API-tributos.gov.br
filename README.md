@@ -2,6 +2,8 @@
 
 **Sistema de gerenciamento de dados tributários conforme a Reforma Tributária Brasileira (Lei Complementar nº 214/2025)**
 
+<img width="1920" height="1040" alt="image" src="https://github.com/user-attachments/assets/cc32c198-f6bf-40c0-adfb-5be857cf99bc" />
+
 ## Funcionalidades
 
 ✅ Carregamento de arquivo JSON com dados de classificação tributária  
