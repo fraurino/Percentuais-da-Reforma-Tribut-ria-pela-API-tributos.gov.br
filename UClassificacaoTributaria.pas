@@ -14,7 +14,7 @@ uses
   System.JSON;
 
 type
-  // Type para armazenar dados de uma classificaÁ„o tribut·ria
+  // Type para armazenar dados de uma classifica√ß√£o tribut√°ria
   TClassificacaoTributaria = record
     CodigoSituacaoTributaria: string;
     DescricaoSituacaoTributaria: string;
@@ -53,10 +53,10 @@ type
     UrlLegislacao: string;
   end;
 
-  // Lista de classificaÁıes tribut·rias
+  // Lista de classifica√ß√µes tribut√°rias
   TListaClassificacoes = TList<TClassificacaoTributaria>;
 
-  // Classe principal para gerenciar classificaÁıes tribut·rias
+  // Classe principal para gerenciar classifica√ß√µes tribut√°rias
   TGerenciadorClassificacaoTributaria = class
   private
     FListaClassificacoes: TListaClassificacoes;
@@ -74,27 +74,27 @@ type
     // Retorna a quantidade de registros
     function ObterTotal: Integer;
 
-    // Busca CST pela ClassificaÁ„o (ClasTrib)
+    // Busca CST pela Classifica√ß√£o (ClasTrib)
     function BuscarCSTporClasificacao(const ACodigoClassificacao: string): string;
 
-    // Busca ClassificaÁ„o pelo CST
+    // Busca Classifica√ß√£o pelo CST
     function BuscarClassificacaoPorCST(const ACodigoCST: string): TList<string>;
 
-    // Busca um registro completo pela ClassificaÁ„o
+    // Busca um registro completo pela Classifica√ß√£o
     function BuscarRegistroPorClasificacao(const ACodigoClassificacao: string): TClassificacaoTributaria;
 
     // Busca registros completos pelo CST
     function BuscarRegistrosPorCST(const ACodigoCST: string): TListaClassificacoes;
 
-    // Retorna a lista completa de classificaÁıes
+    // Retorna a lista completa de classifica√ß√µes
     function ObterTodos: TListaClassificacoes;
 
-    // Retorna uma descriÁ„o formatada de um registro
+    // Retorna uma descri√ß√£o formatada de um registro
     function ObterDescricaoFormatada(const AClassificacao: TClassificacaoTributaria): string;
   end;
 
 /// <summary>
-/// Preenche StringGrid com todos os dados das classificaÁıes tribut·rias
+/// Preenche StringGrid com todos os dados das classifica√ß√µes tribut√°rias
 /// </summary>
 procedure PreencherStringGridCompleto(const AStringGrid: TStringGrid;
                                       const AGerenciador: TGerenciadorClassificacaoTributaria);
@@ -107,7 +107,7 @@ procedure PreencherStringGridPorCST(const AStringGrid: TStringGrid;
                                     const ACST: string);
 
 /// <summary>
-/// Preenche StringGrid com dados filtrados por ClassificaÁ„o
+/// Preenche StringGrid com dados filtrados por Classifica√ß√£o
 /// </summary>
 procedure PreencherStringGridPorClassificacao(const AStringGrid: TStringGrid;
                                               const AGerenciador: TGerenciadorClassificacaoTributaria;
@@ -135,7 +135,7 @@ end;
 
 function TGerenciadorClassificacaoTributaria.StringParaBoolean(const AValor: string): Boolean;
 begin
-  Result := SameText(AValor, 'Sim');
+  Result := SameText(AValor, 'S');
 end;
 
 function TGerenciadorClassificacaoTributaria.StringParaInteger(const AValor: string): Integer;
@@ -161,9 +161,9 @@ begin
 
   LFileName := FArquivoJSON;
   if not FileExists(LFileName) then
-    raise Exception.Create('Arquivo JSON n„o encontrado: ' + LFileName);
+    raise Exception.Create('Arquivo JSON n√£o encontrado: ' + LFileName);
 
-  // Ler arquivo com codificaÁ„o UTF-8
+  // Ler arquivo com codifica√ß√£o UTF-8
   try
     Bytes := TFile.ReadAllBytes(LFileName);
     JSONStr := TEncoding.UTF8.GetString(Bytes);
@@ -173,7 +173,7 @@ begin
   end;
 
   if JSONStr.IsEmpty then
-    raise Exception.Create('Arquivo JSON est· vazio');
+    raise Exception.Create('Arquivo JSON est√° vazio');
 
   // Parse JSON
   try
@@ -182,7 +182,7 @@ begin
     if not (JSONValue is TJSONArray) then
     begin
       JSONValue.Free;
-      raise Exception.Create('Formato inv·lido: esperado um array JSON');
+      raise Exception.Create('Formato inv√°lido: esperado um array JSON');
     end;
 
     JSONArray := JSONValue as TJSONArray;
@@ -196,24 +196,24 @@ begin
         begin
           FillChar(Classificacao, SizeOf(Classificacao), 0);
 
-          Classificacao.CodigoSituacaoTributaria              := JSONObject.GetValue('CÛdigo da SituaÁ„o Tribut·ria').Value;
-          Classificacao.DescricaoSituacaoTributaria           := JSONObject.GetValue('DescriÁ„o da SituaÁ„o Tribut·ria').Value;
-          Classificacao.TributacaoRegular                     := StringParaBoolean(JSONObject.GetValue('TributaÁ„o Regular').Value);
-          Classificacao.ReducaoBCCST                          := StringParaBoolean(JSONObject.GetValue('ReduÁ„o BC CST').Value);
-          Classificacao.ReducaoAliquota                       := StringParaBoolean(JSONObject.GetValue('ReduÁ„o de AlÌquota').Value);
-          Classificacao.TransferenciaCredito                  := StringParaBoolean(JSONObject.GetValue('TransferÍncia de CrÈdito').Value);
+          Classificacao.CodigoSituacaoTributaria              := JSONObject.GetValue('C√≥digo da Situa√ß√£o Tribut√°ria').Value;
+          Classificacao.DescricaoSituacaoTributaria           := JSONObject.GetValue('Descri√ß√£o da Situa√ß√£o Tribut√°ria').Value;
+          Classificacao.TributacaoRegular                     := StringParaBoolean(JSONObject.GetValue('Tributa√ß√£o Regular').Value);
+          Classificacao.ReducaoBCCST                          := StringParaBoolean(JSONObject.GetValue('Redu√ß√£o BC CST').Value);
+          Classificacao.ReducaoAliquota                       := StringParaBoolean(JSONObject.GetValue('Redu√ß√£o de Al√≠quota').Value);
+          Classificacao.TransferenciaCredito                  := StringParaBoolean(JSONObject.GetValue('Transfer√™ncia de Cr√©dito').Value);
           Classificacao.Diferimento                           := StringParaBoolean(JSONObject.GetValue('Diferimento').Value);
-          Classificacao.Monofasica                            := StringParaBoolean(JSONObject.GetValue('Monof·sica').Value);
-          Classificacao.CreditoPresumidoIBSZFM                := StringParaBoolean(JSONObject.GetValue('CrÈdito Presumido IBS Zona Franca de Manaus').Value);
-          Classificacao.AjusteCompetencia                     := StringParaBoolean(JSONObject.GetValue('Ajuste de CompetÍncia').Value);
-          Classificacao.CodigoClassificacaoTributaria         := JSONObject.GetValue('CÛdigo da ClassificaÁ„o Tribut·ria').Value;
-          Classificacao.DescricaoClassificacao                := JSONObject.GetValue('DescriÁ„o do CÛdigo da ClassificaÁ„o Tribut·ria').Value;
-          Classificacao.PercentualReducaoIBS                  := StringParaInteger(JSONObject.GetValue('Percentual ReduÁ„o IBS').Value);
-          Classificacao.PercentualReducaoCBS                  := StringParaInteger(JSONObject.GetValue('Percentual ReduÁ„o CBS').Value);
-          Classificacao.ReducaoBC                             := StringParaBoolean(JSONObject.GetValue('ReduÁ„o BC').Value);
-          Classificacao.CreditoPresumido                      := StringParaBoolean(JSONObject.GetValue('CrÈdito Presumido').Value);
-          Classificacao.EstornoCredito                        := StringParaBoolean(JSONObject.GetValue('Estorno de CrÈdito').Value);
-          Classificacao.TipoAliquota                          := JSONObject.GetValue('Tipo de AlÌquota').Value;
+          Classificacao.Monofasica                            := StringParaBoolean(JSONObject.GetValue('Monof√°sica').Value);
+          Classificacao.CreditoPresumidoIBSZFM                := StringParaBoolean(JSONObject.GetValue('Cr√©dito Presumido IBS Zona Franca de Manaus').Value);
+          Classificacao.AjusteCompetencia                     := StringParaBoolean(JSONObject.GetValue('Ajuste de Compet√™ncia').Value);
+          Classificacao.CodigoClassificacaoTributaria         := JSONObject.GetValue('C√≥digo da Classifica√ß√£o Tribut√°ria').Value;
+          Classificacao.DescricaoClassificacao                := JSONObject.GetValue('Descri√ß√£o do C√≥digo da Classifica√ß√£o Tribut√°ria').Value;
+          Classificacao.PercentualReducaoIBS                  := StringParaInteger(JSONObject.GetValue('Percentual Redu√ß√£o IBS').Value);
+          Classificacao.PercentualReducaoCBS                  := StringParaInteger(JSONObject.GetValue('Percentual Redu√ß√£o CBS').Value);
+          Classificacao.ReducaoBC                             := StringParaBoolean(JSONObject.GetValue('Redu√ß√£o BC').Value);
+          Classificacao.CreditoPresumido                      := StringParaBoolean(JSONObject.GetValue('Cr√©dito Presumido').Value);
+          Classificacao.EstornoCredito                        := StringParaBoolean(JSONObject.GetValue('Estorno de Cr√©dito').Value);
+          Classificacao.TipoAliquota                          := JSONObject.GetValue('Tipo de Al√≠quota').Value;
           Classificacao.NFe                                   := StringParaBoolean(JSONObject.GetValue('NFe').Value);
           Classificacao.NFCe                                  := StringParaBoolean(JSONObject.GetValue('NFCe').Value);
           Classificacao.CTe                                   := StringParaBoolean(JSONObject.GetValue('CTe').Value);
@@ -229,8 +229,8 @@ begin
           Classificacao.NFABI                                 := StringParaBoolean(JSONObject.GetValue('NFABI').Value);
           Classificacao.NFGas                                 := StringParaBoolean(JSONObject.GetValue('NFGas').Value);
           Classificacao.DERE                                  := StringParaBoolean(JSONObject.GetValue('DERE').Value);
-          Classificacao.NumeroAnexo                           := JSONObject.GetValue('N˙mero do Anexo').Value;
-          Classificacao.UrlLegislacao                         := JSONObject.GetValue('Url da LegislaÁ„o').Value;
+          Classificacao.NumeroAnexo                           := JSONObject.GetValue('N√∫mero do Anexo').Value;
+          Classificacao.UrlLegislacao                         := JSONObject.GetValue('Url da Legisla√ß√£o').Value;
 
           FListaClassificacoes.Add(Classificacao);
         end;
@@ -314,15 +314,15 @@ begin
   Result := FListaClassificacoes;
 end;
 
-function TGerenciadorClassificacaoTributaria.ObterDescricaoFormatada(const AClassificacao: TClassificacaoTributaria): string;
+function TGerenciadorClassificacaoTributaria.ObterDescricaoFormatada(co nonst AClassificacao: TClassificacaoTributaria): string;
 begin
   Result := Format(
     'CST: %s - %s'#13#10 +
-    'ClassificaÁ„o: %s - %s'#13#10 +
+    'Classifica√ß√£o: %s - %s'#13#10 +
     'IBS: %d%% | CBS: %d%%'#13#10 +
-    'Diferimento: %s | Monof·sica: %s'#13#10 +
+    'Diferimento: %s | Monof√°sica: %s'#13#10 +
     'NFe: %s | NFCe: %s | CTe: %s'#13#10 +
-    'LegislaÁ„o: %s',
+    'Legisla√ß√£o: %s',
     [
       AClassificacao.CodigoSituacaoTributaria,
       AClassificacao.DescricaoSituacaoTributaria,
@@ -331,7 +331,7 @@ begin
       AClassificacao.PercentualReducaoIBS,
       AClassificacao.PercentualReducaoCBS,
       IfThen(AClassificacao.Diferimento, 'S', 'N'),
-      IfThen(AClassificacao.Monofasica, 'Sim', 'N'),
+      IfThen(AClassificacao.Monofasica, 'S', 'N'),
       IfThen(AClassificacao.NFe, 'S', 'N'),
       IfThen(AClassificacao.NFCe, 'S', 'N'),
       IfThen(AClassificacao.CTe, 'S', 'N'),
@@ -341,7 +341,7 @@ begin
 end;
 
 /// <summary>
-/// Preenche StringGrid com todos os dados das classificaÁıes tribut·rias
+/// Preenche StringGrid com todos os dados das classifica√ß√µes tribut√°rias
 /// </summary>
 procedure PreencherStringGridCompleto(const AStringGrid: TStringGrid;
                                       const AGerenciador: TGerenciadorClassificacaoTributaria);
@@ -351,7 +351,7 @@ var
   Lista: TListaClassificacoes;
 begin
   if not Assigned(AStringGrid) or not Assigned(AGerenciador) then
-    raise Exception.Create('StringGrid ou Gerenciador n„o atribuÌdo');
+    raise Exception.Create('StringGrid ou Gerenciador n√£o atribu√≠do');
 
   AStringGrid.BeginUpdate;
   try
@@ -359,22 +359,22 @@ begin
     AStringGrid.ColCount := 15;
     AStringGrid.RowCount := AGerenciador.ObterTotal + 1;
 
-    // CabeÁalho
+    // Cabe√ßalho
     AStringGrid.Cells[0, 0]  := 'CST';
-    AStringGrid.Cells[1, 0]  := 'DescriÁ„o CST';
-    AStringGrid.Cells[2, 0]  := 'ClassificaÁ„o';
-    AStringGrid.Cells[3, 0]  := 'DescriÁ„o ClassificaÁ„o';
+    AStringGrid.Cells[1, 0]  := 'Descri√ß√£o CST';
+    AStringGrid.Cells[2, 0]  := 'Classifica√ß√£o';
+    AStringGrid.Cells[3, 0]  := 'Descri√ß√£o Classifica√ß√£o';
     AStringGrid.Cells[4, 0]  := 'IBS %';
     AStringGrid.Cells[5, 0]  := 'CBS %';
     AStringGrid.Cells[6, 0]  := 'Diferimento';
-    AStringGrid.Cells[7, 0]  := 'Monof·sica';
+    AStringGrid.Cells[7, 0]  := 'Monof√°sica';
     AStringGrid.Cells[8, 0]  := 'NFe';
     AStringGrid.Cells[9, 0]  := 'NFCe';
     AStringGrid.Cells[10, 0] := 'CTe';
-    AStringGrid.Cells[11, 0] := 'CrÈdito Presumido';
-    AStringGrid.Cells[12, 0] := 'Tipo AlÌquota';
+    AStringGrid.Cells[11, 0] := 'Cr√©dito Presumido';
+    AStringGrid.Cells[12, 0] := 'Tipo Al√≠quota';
     AStringGrid.Cells[13, 0] := 'Anexo';
-    AStringGrid.Cells[14, 0] := 'LegislaÁ„o';
+    AStringGrid.Cells[14, 0] := 'Legisla√ß√£o';
 
     // Dados
     Lista := AGerenciador.ObterTodos;
@@ -419,7 +419,7 @@ var
   Lista: TListaClassificacoes;
 begin
   if not Assigned(AStringGrid) or not Assigned(AGerenciador) then
-    raise Exception.Create('StringGrid ou Gerenciador n„o atribuÌdo');
+    raise Exception.Create('StringGrid ou Gerenciador n√£o atribu√≠do');
 
   AStringGrid.BeginUpdate;
   try
@@ -435,22 +435,22 @@ begin
 
     AStringGrid.RowCount := Lista.Count + 1;
 
-    // CabeÁalho
+    // Cabe√ßalho
     AStringGrid.Cells[0, 0]  := 'CST';
-    AStringGrid.Cells[1, 0]  := 'DescriÁ„o CST';
-    AStringGrid.Cells[2, 0]  := 'ClassificaÁ„o';
-    AStringGrid.Cells[3, 0]  := 'DescriÁ„o ClassificaÁ„o';
+    AStringGrid.Cells[1, 0]  := 'Descri√ß√£o CST';
+    AStringGrid.Cells[2, 0]  := 'Classifica√ß√£o';
+    AStringGrid.Cells[3, 0]  := 'Descri√ß√£o Classifica√ß√£o';
     AStringGrid.Cells[4, 0]  := 'IBS %';
     AStringGrid.Cells[5, 0]  := 'CBS %';
     AStringGrid.Cells[6, 0]  := 'Diferimento';
-    AStringGrid.Cells[7, 0]  := 'Monof·sica';
+    AStringGrid.Cells[7, 0]  := 'Monof√°sica';
     AStringGrid.Cells[8, 0]  := 'NFe';
     AStringGrid.Cells[9, 0]  := 'NFCe';
     AStringGrid.Cells[10, 0] := 'CTe';
-    AStringGrid.Cells[11, 0] := 'CrÈdito Presumido';
-    AStringGrid.Cells[12, 0] := 'Tipo AlÌquota';
+    AStringGrid.Cells[11, 0] := 'Cr√©dito Presumido';
+    AStringGrid.Cells[12, 0] := 'Tipo Al√≠quota';
     AStringGrid.Cells[13, 0] := 'Anexo';
-    AStringGrid.Cells[14, 0] := 'LegislaÁ„o';
+    AStringGrid.Cells[14, 0] := 'Legisla√ß√£o';
 
     // Dados
     for i := 0 to Lista.Count - 1 do
@@ -483,7 +483,7 @@ begin
 end;
 
 /// <summary>
-/// Preenche StringGrid com dados filtrados por ClassificaÁ„o
+/// Preenche StringGrid com dados filtrados por Classifica√ß√£o
 /// </summary>
 procedure PreencherStringGridPorClassificacao(const AStringGrid: TStringGrid;
                                               const AGerenciador: TGerenciadorClassificacaoTributaria;
@@ -492,7 +492,7 @@ var
   Reg: TClassificacaoTributaria;
 begin
   if not Assigned(AStringGrid) or not Assigned(AGerenciador) then
-    raise Exception.Create('StringGrid ou Gerenciador n„o atribuÌdo');
+    raise Exception.Create('StringGrid ou Gerenciador n√£o atribu√≠do');
 
   AStringGrid.BeginUpdate;
   try
@@ -503,26 +503,26 @@ begin
 
     if Reg.CodigoClassificacaoTributaria.IsEmpty then
     begin
-      ShowMessage('Nenhum registro encontrado para classificaÁ„o: ' + AClassificacao);
+      ShowMessage('Nenhum registro encontrado para classifica√ß√£o: ' + AClassificacao);
       Exit;
     end;
 
-    // CabeÁalho
+    // Cabe√ßalho
     AStringGrid.Cells[0, 0]  := 'CST';
-    AStringGrid.Cells[1, 0]  := 'DescriÁ„o CST';
-    AStringGrid.Cells[2, 0]  := 'ClassificaÁ„o';
-    AStringGrid.Cells[3, 0]  := 'DescriÁ„o ClassificaÁ„o';
+    AStringGrid.Cells[1, 0]  := 'Descri√ß√£o CST';
+    AStringGrid.Cells[2, 0]  := 'Classifica√ß√£o';
+    AStringGrid.Cells[3, 0]  := 'Descri√ß√£o Classifica√ß√£o';
     AStringGrid.Cells[4, 0]  := 'IBS %';
     AStringGrid.Cells[5, 0]  := 'CBS %';
     AStringGrid.Cells[6, 0]  := 'Diferimento';
-    AStringGrid.Cells[7, 0]  := 'Monof·sica';
+    AStringGrid.Cells[7, 0]  := 'Monof√°sica';
     AStringGrid.Cells[8, 0]  := 'NFe';
     AStringGrid.Cells[9, 0]  := 'NFCe';
     AStringGrid.Cells[10, 0] := 'CTe';
-    AStringGrid.Cells[11, 0] := 'CrÈdito Presumido';
-    AStringGrid.Cells[12, 0] := 'Tipo AlÌquota';
+    AStringGrid.Cells[11, 0] := 'Cr√©dito Presumido';
+    AStringGrid.Cells[12, 0] := 'Tipo Al√≠quota';
     AStringGrid.Cells[13, 0] := 'Anexo';
-    AStringGrid.Cells[14, 0] := 'LegislaÁ„o';
+    AStringGrid.Cells[14, 0] := 'Legisla√ß√£o';
 
     // Dados
     AStringGrid.Cells[0, 1]  := Reg.CodigoSituacaoTributaria;
