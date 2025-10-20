@@ -106,6 +106,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uCalculadoraTributosAPI.pas"/>
+        <DCCReference Include="UClassificacaoTributaria.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
